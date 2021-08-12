@@ -32,7 +32,7 @@
 
     - name: Copy docker-compose file to docker directory
       copy:
-        src: ./docker-compose/docker-compose.yaml
+        src: /var/jenkins_home/workspace/20.test2deploy/docker-compose/docker-compose.yaml
         dest: /data/docker
         owner: jenkins
         group: jenkins
