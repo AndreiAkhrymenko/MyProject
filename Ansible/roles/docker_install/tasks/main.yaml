@@ -1,21 +1,20 @@
 ---
+- name: Install required system packages
+  apt: name={{ item }} state=latest update_cache=yes
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
 
-- name: Install required packages for Docker
-  yum:
-    name:
-      - yum-utils
-      - device-mapper-persistent-data
-      - lvm2
+- name: Add GPG
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Add Docker repo
-  get_url:
-    url: https://download.docker.com/linux/centos/docker-ce.repo
-    dest: /etc/yum.repos.d/docer-ce.repo
-  become: yes
+- name: Add repository docker
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
 
 - name: Install Docker
-  yum:
+  apt:
     name:
       - docker-ce
       - docker-ce-cli
