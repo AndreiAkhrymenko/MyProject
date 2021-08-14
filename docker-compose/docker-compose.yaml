@@ -1,18 +1,18 @@
-version: "3.1"
+version: '3.1'
 
 services:
 
-  joomla:
-    image: joomla:php7.3-apache
-    container_name: Joomla
+  wordpress:
+    image: wordpress:php7.4-fpm-alpine
+    container_name: Wordpress
     restart: always
     ports:
-      - 8080:80
+      - 8081:80
     environment:
-      JOOMLA_DB_HOST: db
-      JOOMLA_DB_USER: joomla
-      JOOMLA_DB_PASSWORD: joomla
-      JOOMLA_DB_NAME: joomlaDB
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
     volumes:
       - ./app:/var/www/html
     depends_on:
@@ -23,9 +23,13 @@ services:
     container_name: MySQL
     restart: always
     environment:
-      MYSQL_DATABASE: joomlaDB
-      MYSQL_USER: joomla
-      MYSQL_PASSWORD: joomla
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - ./db:/var/lib/mysql
+
+volumes:
+  ./app:
+  ./db:
