@@ -32,12 +32,11 @@
 
     - name: Copy docker-compose file to docker directory
       copy:
-        src: /home/andrei/18.Jenkins/jenkins_home/workspace/20.MyProject/docker-compose/docker-compose.yaml
+        src: ./workspace/20.MyProject/docker-compose/docker-compose.yaml
         dest: /data/docker
         owner: jenkins
         group: jenkins
         mode: 0644
-        force: yes
 
     - name: Run docker-compose
       shell: docker-compose up -d
