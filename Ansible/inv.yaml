@@ -2,6 +2,6 @@
 all:
   hosts:
     work_host2:
-      ansible_host: 192.168.100.36
+      ansible_host: 192.168.100.40
       ansible_user: jenkins
       # ansible_python_interpreter: /usr/bin/python3
