@@ -30,3 +30,7 @@ services:
     volumes:
       - ./db:/var/lib/mysql
 
+volumes:
+  ./app:
+  ./db:
+
