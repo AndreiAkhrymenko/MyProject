@@ -1,0 +1,21 @@
+pipeline{
+  agent any
+
+  triggers {
+    cron('H 3 * * *')
+  }
+
+  stages{
+    stage('Clone git repo'){
+      steps{
+        git url: 'git@github.com:AndreiAkhrymenko/MyProject.git',
+          credentialsId: 'ssh'
+       }
+    }
+  stage('Run ansible playbook for upgrade'){
+    steps{
+      ansiblePlaybook credentialsId: 'WorkHost2', disableHostKeyChecking: true, installation: 'ansible', inventory: 'Ansible/inv.yaml', playbook: 'Ansible/app_upgrade.yaml', colorized: true
+      }
+    }
+  }
+}
