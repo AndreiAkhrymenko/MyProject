@@ -1,0 +1,5 @@
+---
+- hosts: work_host2
+  become: true
+  roles:
+    - app_upgrade

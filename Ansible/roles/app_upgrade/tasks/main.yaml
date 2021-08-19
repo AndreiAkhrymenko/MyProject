@@ -1,0 +1,70 @@
+---
+- name: mkdir for application files
+  file:
+    path: /data/docker/backup/app
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+
+- name: mkdir for db files
+  file:
+    path: /data/docker/backup/db
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+
+- name: Sync files
+  shell: | 
+    rsync -aH /data/docker/app/ /data/docker/backup/app/
+    rsync -aH /data/docker/db/ /data/docker/backup/db/
+
+- name: Stop conteiner
+  shell: docker stop Wordpress
+  args:
+    chdir: /data/docker
+
+- name: Remove conteiner
+  shell: docker rm Wordpress
+
+- name: Copy docker-compose to docker directory
+  copy:
+    src: /var/lib/jenkins/workspace/20.MyProject/docker-compose/docker-compose_upgrade.yaml
+    dest: /data/docker
+    owner: jenkins
+    group: jenkins
+    mode: 0644
+
+- name: Start docker-compose
+  shell: docker-compose -f docker-compose_upgrade.yaml up -d
+  args:
+    chdir: /data/docker
+
+- name: Timeout
+  pause:
+    seconds: 15
+
+- name: Curl and check output
+  block:
+    - name: Curl content
+      uri:
+        url: "http://192.168.100.40:8081"
+        return_content: yes
+      register: content
+      failed_when: "'password' not in content.content"
+    - name: Print content
+      debug:
+        msg: "{{ content }}"
+  rescue:
+    - name: Send message Slack
+      slack:
+        token: ////
+        channel: '#aalarm'
+        username: 'jenkins'
+        msg: 'Upgrade failed'
+        parse: 'full'
+        
+        #    - name: Start rollback
+        #      include_role:
+        #        name: app_rollback
