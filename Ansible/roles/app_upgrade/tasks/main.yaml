@@ -30,7 +30,7 @@
 
 - name: Copy docker-compose to docker directory
   copy:
-    src: /var/lib/jenkins/workspace/20.MyProject.v3/docker-compose/docker-compose_upgrade.yaml
+    src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose_upgrade.yaml
     dest: /data/docker
     owner: jenkins
     group: jenkins
@@ -49,7 +49,7 @@
   block:
     - name: Curl content
       uri:
-        url: "http://192.168.100.40:8081"
+        url: "http://localhost:8081"
         return_content: yes
       register: content
       failed_when: "'WordPress' not in content.content"
@@ -59,7 +59,7 @@
   rescue:
     - name: Send message Slack
       slack:
-        token: ////
+        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy
         channel: '#aalarm'
         username: 'jenkins'
         msg: 'Upgrade failed'

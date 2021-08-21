@@ -20,7 +20,7 @@
   block:
     - name: Curl
       uri:
-        url: "http://192.168.100.40:8081"
+        url: "http://localhost:8081"
         return_content: yes
       register: content
       failed_when: "'WordPress' not in content.content"
@@ -30,7 +30,7 @@
   rescue:
     - name: Send notification to Slack
       slack:
-        token: 
+        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy 
         channel: '#aalarm'
         username: 'jenkins'
         msg: 'Rollback failed'
