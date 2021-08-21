@@ -31,6 +31,6 @@ services:
       - ./db:/var/lib/mysql
 
 volumes:
-  ./app:
-  ./db:
+  app:
+  db:
 
