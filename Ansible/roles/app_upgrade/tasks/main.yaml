@@ -65,6 +65,6 @@
         msg: 'Upgrade failed'
         parse: 'full'
         
-        #    - name: Start rollback
-        #      include_role:
-        #        name: app_rollback
+    - name: Start rollback
+      include_role:
+        name: app_rollback
