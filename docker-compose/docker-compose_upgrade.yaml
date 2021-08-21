@@ -9,10 +9,10 @@ services:
     ports:
       - 8081:80
     environment:
-      JOOMLA_DB_HOST: db
-      JOOMLA_DB_USER: exampleuser
-      JOOMLA_DB_PASSWORD: examplepass
-      JOOMLA_DB_NAME: exampledb
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
     volumes:
       - ./app:/var/www/html
     depends_on:
