@@ -30,7 +30,7 @@
 
 - name: Copy docker-compose to docker directory
   copy:
-    src: /var/lib/jenkins/workspace/20.MyProject/docker-compose/docker-compose_upgrade.yaml
+    src: /var/lib/jenkins/workspace/20.MyProject.v3/docker-compose/docker-compose_upgrade.yaml
     dest: /data/docker
     owner: jenkins
     group: jenkins
