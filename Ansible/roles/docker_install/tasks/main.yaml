@@ -1,7 +1,8 @@
 ---
 - name: Install required system packages
   apt: name={{ item }} state=latest update_cache=yes
-  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+  with_items: {{ system_packages }}
+  #  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
 
 - name: Add GPG
   apt_key:
@@ -14,13 +15,9 @@
     state: present
 
 - name: Install Docker
-  apt:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: present
+  apt: name={{ item }} state=present
   become: yes
+  with_items: {{ docker_packages }}
 
 - name: Install docker-compose
   get_url: 
