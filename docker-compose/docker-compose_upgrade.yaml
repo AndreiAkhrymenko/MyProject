@@ -14,7 +14,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ./app:/var/www/html
+      - ./app1:/var/www/html
     depends_on:
       - db
 
