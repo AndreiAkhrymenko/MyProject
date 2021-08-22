@@ -30,7 +30,7 @@
 
 - name: Copy docker-compose to docker directory
   copy:
-    src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose_upgrade.yaml
+    src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose_upgrade111.yaml
     dest: /data/docker
     owner: jenkins
     group: jenkins
@@ -62,7 +62,7 @@
         token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy
         channel: '#aalarm'
         username: 'jenkins'
-        msg: 'Upgrade failed'
+        msg: 'Upgrade failed: role app_upgrade'
         parse: 'full'
         
     - name: Start rollback
