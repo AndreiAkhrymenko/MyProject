@@ -6,4 +6,5 @@ all:
       ansible_user: jenkins
   vars:
     jenkins_task_name: 20.MyProject.v3
+    jenkins_task_name_upgrade: 20.MyProject.Upgrade
       # ansible_python_interpreter: /usr/bin/python3

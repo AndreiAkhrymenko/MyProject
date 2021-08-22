@@ -10,11 +10,11 @@ services:
       - 8081:80
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_USER: exampleuser123
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ./app1:/var/www/html
+      - ./app:/var/www/html
     depends_on:
       - db
 
