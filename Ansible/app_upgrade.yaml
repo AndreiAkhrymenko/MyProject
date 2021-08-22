@@ -1,5 +1,6 @@
 ---
 - hosts: work_host2
+  gather_facts: False
   become: true
   roles:
     - app_upgrade

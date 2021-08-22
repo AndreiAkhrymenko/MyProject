@@ -30,7 +30,7 @@
 
 - name: Copy docker-compose to docker directory
   copy:
-    src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose_upgrade111.yaml
+    src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose_upgrade.yaml
     dest: /data/docker
     owner: jenkins
     group: jenkins
@@ -56,15 +56,7 @@
     - name: Print content
       debug:
         msg: "{{ content }}"
-  rescue:
-    - name: Send message Slack
-      slack:
-        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy
-        channel: '#aalarm'
-        username: 'jenkins'
-        msg: 'Upgrade failed: role app_upgrade'
-        parse: 'full'
-        
+  rescue:     
     - name: Start rollback
       include_role:
         name: app_rollback
