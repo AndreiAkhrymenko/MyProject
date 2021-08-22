@@ -30,7 +30,7 @@
 
 - name: Copy docker-compose to docker directory
   copy:
-    src: /var/lib/jenkins/workspace/{{ jenkins_task_name_upgrade }}/docker-compose/docker-compose_upgrade.yaml
+    src: /var/lib/jenkins/workspace/{{ jenkins_task_name_upgrade }}/Ansible/roles/app_upgrade/files/docker-compose_upgrade.yaml
     dest: /data/docker
     owner: jenkins
     group: jenkins

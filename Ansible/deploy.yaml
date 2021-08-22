@@ -33,7 +33,7 @@
 
     - name: Copy docker-compose file to docker directory
       copy:
-        src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/docker-compose/docker-compose.yaml
+        src: /var/lib/jenkins/workspace/{{ jenkins_task_name }}/Ansible/roles/docker_install/files/docker-compose.yaml
         dest: /data/docker
         owner: jenkins
         group: jenkins
