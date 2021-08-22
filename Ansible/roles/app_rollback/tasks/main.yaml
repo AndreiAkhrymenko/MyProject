@@ -27,6 +27,12 @@
     - name: Print content
       debug:
         msg: "{{ content }}"
+    - name: Send notification to Slack
+      slack:
+        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy
+        channel: '#aalarm'
+        username: 'jenkins'
+        msg: 'Rollback SUCCESSFULL'
   rescue:
     - name: Send notification to Slack
       slack:
