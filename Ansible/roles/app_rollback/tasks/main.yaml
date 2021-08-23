@@ -29,14 +29,14 @@
         msg: "{{ content }}"
     - name: Send notification to Slack
       slack:
-        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy
-        channel: '#aalarm'
+        token: XXXXXXX
+        channel: '#XXXX'
         username: 'jenkins'
         msg: 'Rollback SUCCESSFULL'
   rescue:
     - name: Send notification to Slack
       slack:
-        token: TFBPBNB2L/B0298VAEWLF/Cg15mrgoPMCIzkyIybLNUPDy 
-        channel: '#aalarm'
+        token: XXXXXXXX
+        channel: '#XXXX'
         username: 'jenkins'
         msg: 'Rollback failed'
